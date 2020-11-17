@@ -9,11 +9,6 @@ namespace Mvc5Porject.Models
     [Table("Dessert")]
     public partial class Dessert
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Dessert()
-        {
-            OrderDetails = new HashSet<OrderDetails>();
-        }
 
         [StringLength(10)]
         public string DessertID { get; set; }
@@ -32,8 +27,5 @@ namespace Mvc5Porject.Models
         public string DessertImage { get; set; }
 
         public bool? IsOnSale { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

@@ -9,12 +9,6 @@ namespace Mvc5Porject.Models
     [Table("Gift")]
     public partial class Gift
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Gift()
-        {
-            OrderDetails = new HashSet<OrderDetails>();
-        }
-
         [StringLength(10)]
         public string GiftID { get; set; }
 
@@ -34,7 +28,5 @@ namespace Mvc5Porject.Models
 
         public bool? IsOnSales { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

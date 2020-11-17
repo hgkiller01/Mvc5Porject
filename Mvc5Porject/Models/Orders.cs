@@ -8,11 +8,6 @@ namespace Mvc5Porject.Models
 
     public partial class Orders
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
-        {
-            OrderDetails = new HashSet<OrderDetails>();
-        }
 
         [Key]
         [StringLength(50)]
@@ -31,7 +26,5 @@ namespace Mvc5Porject.Models
 
         public virtual member member { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

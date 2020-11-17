@@ -9,11 +9,6 @@ namespace Mvc5Porject.Models
     [Table("member")]
     public partial class member
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public member()
-        {
-            Orders = new HashSet<Orders>();
-        }
 
         [Key]
         [StringLength(12)]
@@ -35,7 +30,5 @@ namespace Mvc5Porject.Models
 
         public bool? isAdmin { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
     }
 }
