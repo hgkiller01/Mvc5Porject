@@ -278,6 +278,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Adapter\" />
     <Folder Include="API\" />
   </ItemGroup>
   <ItemGroup>

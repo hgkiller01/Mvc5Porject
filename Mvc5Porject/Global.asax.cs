@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -24,6 +25,7 @@ namespace Mvc5Porject
             ConfigureService(services);
 
             var resolver = new DotnetCoreDIDependencyResolver(services.BuildServiceProvider());
+            DependencyResolver.SetResolver(resolver);
         }
 
         private void ConfigureService(ServiceCollection services)
@@ -38,6 +40,21 @@ namespace Mvc5Porject
             }
 
             services.AddHttpClient();
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            var infos = myAssembly.DefinedTypes.Where(x => x.FullName.StartsWith("Mvc5Porject.Adapter"));
+            //var infos2 = myAssembly.DefinedTypes.Where(x => x.FullName.StartsWith("LineClass.Models.BusinessDBAccess.Interface"));
+            foreach (TypeInfo item in infos)
+            {
+                if (item.IsClass)
+                {
+                    var IsInterFace = infos.Where(x => x.Name == "I" + item.Name).FirstOrDefault();
+                    if (IsInterFace != null)
+                    {
+                        services.AddScoped(IsInterFace, item);
+                    }
+                }
+
+            }
         }
     }
 
