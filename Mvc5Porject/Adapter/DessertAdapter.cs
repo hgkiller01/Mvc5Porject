@@ -16,8 +16,8 @@ namespace Mvc5Porject.Adapter
         {
             using(conn = new SqlConnection(ConnStr))
             {
-                string sql = @"Insert Dessert (DessertName,DessertPrice,DessertKind,DessertIntroduction,DessertImage,IsOnSale)
-                                values (@DessertName,@DessertPrice,@DessertKind,@DessertIntroduction,@DessertImage,1)";
+                string sql = @"Insert Dessert (DessertID,DessertName,DessertPrice,DessertKind,DessertIntroduction,DessertImage,IsOnSale)
+                                values (@DessertID,@DessertName,@DessertPrice,@DessertKind,@DessertIntroduction,@DessertImage,1)";
                 if (conn.Execute(sql, dessert) > 0)
                     return true;
                 else
@@ -25,7 +25,7 @@ namespace Mvc5Porject.Adapter
             }
         }
 
-        public bool Delete(int dessertID)
+        public bool Delete(string dessertID)
         {
             using(conn = new SqlConnection(ConnStr))
             {
@@ -34,6 +34,15 @@ namespace Mvc5Porject.Adapter
                     return true;
                 else
                     return false;
+            }
+        }
+
+        public Dessert Get(string dessertID)
+        {
+            using(conn = new SqlConnection(ConnStr))
+            {
+                string sql = @"select * from Dessert where DessertID = @DessertID";
+                return conn.QueryFirstOrDefault<Dessert>(sql, new { DessertID = dessertID });
             }
         }
 
@@ -51,7 +60,7 @@ namespace Mvc5Porject.Adapter
             using(conn = new SqlConnection(ConnStr))
             {
                 string sql = @"Update Dessert set DessertName = @DessertName ,DessertPrice = @DessertPrice, DessertKind = @DessertKind,
-                    DessertIntroduction = @DessertIntroduction,DessertImage = @DessertImage , IsOnSale = @IsOnSale";
+                    DessertIntroduction = @DessertIntroduction,DessertImage = @DessertImage , IsOnSale = @IsOnSale where DessertID = @DessertID";
                 if (conn.Execute(sql, dessert) > 0)
                     return true;
                 else

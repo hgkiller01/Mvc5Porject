@@ -12,6 +12,7 @@ namespace Mvc5Porject.Adapter.InterFace
         List<Dessert> GetList();
         bool Create(Dessert dessert);
         bool Update(Dessert dessert);
-        bool Delete(int dessertID);
+        bool Delete(string dessertID);
+        Dessert Get(string dessertID);
     }
 }

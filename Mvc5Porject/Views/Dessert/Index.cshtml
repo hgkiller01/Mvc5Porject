@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Mvc5Porject.Models.Dessert>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("新增", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DessertName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DessertPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DessertKind)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DessertImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOnSale)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DessertName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DessertPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DessertKind)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DessertImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsOnSale)
+        </td>
+        <td>
+            @Html.ActionLink("修改", "Edit", new { id=item.DessertID }) |
+            @Html.ActionLink("刪除", "Delete", new { id=item.DessertID })
+        </td>
+    </tr>
+}
+
+</table>
